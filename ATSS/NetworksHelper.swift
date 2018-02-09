@@ -43,7 +43,7 @@ enum Router{
 
 struct ATSSNetworkHelper {
     
-    static func getUnsummarizedArticle(from json: JSON) -> (msg: String, article: UnsummarizedArticle?) {
+    static private func getUnsummarizedArticle(from json: JSON) -> (msg: String, article: UnsummarizedArticle?) {
         let unsummarizedArticle = UnsummarizedArticle()
         switch json["code"].int! {
         case ResponseCode.SUCCESS.rawValue:
@@ -80,21 +80,43 @@ struct ATSSNetworkHelper {
     
     }
     
-    static func getSummary(type: ArticleType, count: Int, content: String, complition: @escaping (JSON?) -> Void) {
+    static private func getSummart(from json: JSON) -> (msg: String, summarization: SummarizedArticle?) {
+        let summarizedArticle = SummarizedArticle()
+        switch json["code"].int! {
+        case ResponseCode.SUCCESS.rawValue:
+            summarizedArticle.article = json["data"]["article"].string!
+            summarizedArticle.summary = json["data"]["summary"].arrayObject as! [String]
+            return (ResponseCode.SUCCESS.message(), summarizedArticle)
+        case ResponseCode.FORMAT_ERROR.rawValue:
+            return (ResponseCode.FORMAT_ERROR.message(), nil)
+        case ResponseCode.NO_ARTICLE.rawValue:
+            return (ResponseCode.NO_ARTICLE.message(), nil)
+        default:
+            return (ResponseCode.UNKNOEN_ERROR.message(), nil)
+        }
         
-        switch type {
+    }
+    
+    static func getSummary(from articleOrUrl: ArticleOrURL, complition: @escaping (SummarizedArticle?) -> Void) {
+        
+        switch articleOrUrl.type {
         case .URL:
             let json: [String: Any] = [
                 "type": 1,
-                "count": count,
-                "url": content
+                "count": articleOrUrl.count,
+                "url": articleOrUrl.content
             ]
             Alamofire.request(Router.getSummary.asString(), method: .post, parameters: json , encoding: JSONEncoding.default, headers: nil).authenticate(user: username, password: password).validate().responseJSON {
                 (response) in
                 switch response.result{
                 case .success(let value):
                     let json = JSON(value)
-                    complition(json)
+                    let result = getSummart(from: json)
+                    if let summarization = result.summarization {
+                        complition(summarization)
+                    }else{
+                        complition(nil)
+                    }
                 case .failure(let error):
                     print(error)
                     complition(nil)
@@ -103,38 +125,54 @@ struct ATSSNetworkHelper {
         case .Text:
             let json: [String: Any] = [
                 "type": 0,
-                "count": count,
-                "text": content
+                "count": articleOrUrl.count,
+                "text": articleOrUrl.content
             ]
             Alamofire.request(Router.getSummary.asString(), method: .post, parameters: json , encoding: JSONEncoding.default, headers: nil).authenticate(user: username, password: password).validate().responseJSON {
                 (response) in
                 switch response.result{
                 case .success(let value):
                     let json = JSON(value)
-                    complition(json)
+                    let result = getSummart(from: json)
+                    if let summarization = result.summarization {
+                        complition(summarization)
+                    }else {
+                        complition(nil)
+                    }
                 case .failure(let error):
                     print(error)
                     complition(nil)
                 }
             }
+        default:
+            complition(nil)
         }
     }
     
-    static func uploadSummary(id: String, text: String, summarization: String, complition: @escaping (JSON?) -> Void){
+    static func upload(summarization: SummarizationForUpload, complition: @escaping (ResponseCode) -> Void){
         let json: [String: Any] = [
-            "id": id,
-            "text": text,
-            "summarization": summarization
+            "id": summarization.id,
+            "text": summarization.text,
+            "summarization": summarization.summarization
         ]
         Alamofire.request(Router.uploadSummary.asString(), method: .post, parameters: json, encoding: JSONEncoding.default, headers: nil).authenticate(user: username, password: password).validate().responseJSON {
             (response) in
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
-                complition(json)
+                switch json["code"].int! {
+                case ResponseCode.SUCCESS.rawValue:
+                    complition(.SUCCESS)
+                case ResponseCode.FORMAT_ERROR.rawValue:
+                    complition(.FORMAT_ERROR)
+                case ResponseCode.NO_ARTICLE.rawValue:
+                    complition(.NO_ARTICLE)
+                default:
+                    complition(.UNKNOEN_ERROR)
+                }
             case .failure(let error):
                 print(error)
-                complition(nil)
+                complition(.UNKNOEN_ERROR)
             }
         }
     }

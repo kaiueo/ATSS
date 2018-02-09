@@ -42,13 +42,19 @@ class UnsummarizedArticle {
 
 class SummarizedArticle {
     var article: String!
-    var summary: String!
+    var summary: [String]!
 }
 
 class SummarizationForUpload {
     var id: String!
     var text: String!
     var summarization: String!
+}
+
+class ArticleOrURL {
+    var type: ArticleType!
+    var count: Int!
+    var content: String!
 }
 
 

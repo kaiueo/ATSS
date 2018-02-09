@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3FD32F202DF2AC00888798 /* ChooseSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */; };
+		0A3FD331202DF64100888798 /* TextOrURLInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */; };
+		0A3FD333202E09C200888798 /* SummarizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD332202E09C200888798 /* SummarizationViewController.swift */; };
+		0A3FD335202E0D2600888798 /* OriginArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD334202E0D2600888798 /* OriginArticleViewController.swift */; };
 		0A4DD22D202C4F80001A0606 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DD20F202C4F80001A0606 /* DesignableImageView.swift */; };
 		0A4DD22E202C4F80001A0606 /* KeyboardLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DD210202C4F80001A0606 /* KeyboardLayoutConstraint.swift */; };
 		0A4DD22F202C4F80001A0606 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4DD211202C4F80001A0606 /* TransitionManager.swift */; };
@@ -72,6 +76,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceViewController.swift; sourceTree = "<group>"; };
+		0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOrURLInputViewController.swift; sourceTree = "<group>"; };
+		0A3FD332202E09C200888798 /* SummarizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizationViewController.swift; sourceTree = "<group>"; };
+		0A3FD334202E0D2600888798 /* OriginArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginArticleViewController.swift; sourceTree = "<group>"; };
 		0A4DD20F202C4F80001A0606 /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
 		0A4DD210202C4F80001A0606 /* KeyboardLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutConstraint.swift; sourceTree = "<group>"; };
 		0A4DD211202C4F80001A0606 /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
@@ -261,6 +269,10 @@
 			children = (
 				0AB502F7202C3BD000ADBA82 /* SummaryHistoryTableViewController.swift */,
 				0AA7A10D202D8E4E00E05D18 /* LoginViewController.swift */,
+				0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */,
+				0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */,
+				0A3FD332202E09C200888798 /* SummarizationViewController.swift */,
+				0A3FD334202E0D2600888798 /* OriginArticleViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -589,6 +601,7 @@
 				0A4DD22F202C4F80001A0606 /* TransitionManager.swift in Sources */,
 				0A4DD23C202C4F80001A0606 /* DesignableButton.swift in Sources */,
 				0A4DD243202C4F80001A0606 /* DesignableTextView.swift in Sources */,
+				0A3FD32F202DF2AC00888798 /* ChooseSourceViewController.swift in Sources */,
 				0A4DD236202C4F80001A0606 /* BlurView.swift in Sources */,
 				0A4DD231202C4F80001A0606 /* ImageLoader.swift in Sources */,
 				0A4DD246202C4F80001A0606 /* UnwindSegue.swift in Sources */,
@@ -600,6 +613,7 @@
 				0A4DD244202C4F80001A0606 /* AutoTextView.swift in Sources */,
 				0AB502F8202C3BD000ADBA82 /* SummaryHistoryTableViewController.swift in Sources */,
 				0A4DD23F202C4F80001A0606 /* DesignableTabBarController.swift in Sources */,
+				0A3FD333202E09C200888798 /* SummarizationViewController.swift in Sources */,
 				0A4DD240202C4F80001A0606 /* AsyncButton.swift in Sources */,
 				0A4DD233202C4F80001A0606 /* SpringImageView.swift in Sources */,
 				0AB502FA202C3C0F00ADBA82 /* ConfigStrings.swift in Sources */,
@@ -617,6 +631,8 @@
 				0A4DD22E202C4F80001A0606 /* KeyboardLayoutConstraint.swift in Sources */,
 				0AA7A10E202D8E4E00E05D18 /* LoginViewController.swift in Sources */,
 				0A4DD22D202C4F80001A0606 /* DesignableImageView.swift in Sources */,
+				0A3FD335202E0D2600888798 /* OriginArticleViewController.swift in Sources */,
+				0A3FD331202DF64100888798 /* TextOrURLInputViewController.swift in Sources */,
 				0A4DD247202C4F80001A0606 /* LoadingView.swift in Sources */,
 				0AB502C8202C360E00ADBA82 /* ATSS.xcdatamodeld in Sources */,
 				0AA7A110202DA75300E05D18 /* Models.swift in Sources */,

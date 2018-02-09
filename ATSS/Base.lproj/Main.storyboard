@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b0O-0Y-OnC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2xW-Iv-LNO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -174,10 +174,10 @@
             </objects>
             <point key="canvasLocation" x="1564" y="1495"/>
         </scene>
-        <!--View Controller-->
+        <!--Origin Article View Controller-->
         <scene sceneID="sCK-ZB-ZoY">
             <objects>
-                <viewController id="mLu-KG-J0u" sceneMemberID="viewController">
+                <viewController id="mLu-KG-J0u" customClass="OriginArticleViewController" customModule="ATSS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zeF-EC-f02">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,6 +198,9 @@
                                                         <constraint firstAttribute="width" constant="18" id="YtD-f3-2p8"/>
                                                     </constraints>
                                                     <state key="normal" image="hide-origin-button"/>
+                                                    <connections>
+                                                        <action selector="hideButtonDidTouch:" destination="mLu-KG-J0u" eventType="touchUpInside" id="5ux-sM-ueH"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原文" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ly6-fL-WTr">
                                                     <rect key="frame" x="167" y="25" width="41" height="24"/>
@@ -216,15 +219,15 @@
                                                 <constraint firstAttribute="trailing" secondItem="tl0-un-N3h" secondAttribute="trailing" constant="55" id="nin-ns-3R3"/>
                                             </constraints>
                                         </view>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G13-7i-y0X" customClass="DesignableTextView" customModule="ATSS" customModuleProvider="target">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G13-7i-y0X" customClass="DesignableTextView" customModule="ATSS" customModuleProvider="target">
                                             <rect key="frame" x="16" y="75" width="343" height="574"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
-                                                    <real key="value" value="6"/>
+                                                    <real key="value" value="12"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </textView>
@@ -251,10 +254,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ugd-Ev-nNe"/>
                     </view>
+                    <connections>
+                        <outlet property="originArticleTextView" destination="G13-7i-y0X" id="Psx-91-FMP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIB-1a-108" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2396" y="1494.6026986506747"/>
+            <point key="canvasLocation" x="2702" y="2019"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OB9-mJ-8vy">
@@ -339,7 +345,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="write-icon" id="rQy-6e-7zU">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="jA4-xG-yuk" kind="presentation" modalPresentationStyle="overFullScreen" id="PZu-VZ-Tk1"/>
+                                <segue destination="jA4-xG-yuk" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="PZu-VZ-Tk1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -348,10 +354,10 @@
             </objects>
             <point key="canvasLocation" x="-951" y="1674"/>
         </scene>
-        <!--View Controller-->
+        <!--Choose Source View Controller-->
         <scene sceneID="iCJ-8n-C7p">
             <objects>
-                <viewController id="jA4-xG-yuk" sceneMemberID="viewController">
+                <viewController id="jA4-xG-yuk" customClass="ChooseSourceViewController" customModule="ATSS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZlS-KG-wqJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -364,6 +370,9 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejk-QZ-NXx">
                                             <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                                            <connections>
+                                                <action selector="chooseSourceButtonDidTouch:" destination="jA4-xG-yuk" eventType="touchUpInside" id="2pG-Ml-sr5"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择来源" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYV-ZP-Emv" customClass="DesignableLabel" customModule="ATSS" customModuleProvider="target">
                                             <rect key="frame" x="111" y="196" width="152" height="42"/>
@@ -374,6 +383,10 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                             <color key="textColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideDown"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LTb-50-Kq4" customClass="DesignableView" customModule="ATSS" customModuleProvider="target">
                                             <rect key="frame" x="77" y="258" width="220" height="150"/>
@@ -397,6 +410,9 @@
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="urlButtonDidTouch:" destination="jA4-xG-yuk" eventType="touchUpInside" id="pUD-wz-DcH"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCF-nx-lev" customClass="DesignableButton" customModule="ATSS" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="76" width="220" height="74"/>
@@ -413,6 +429,9 @@
                                                             <real key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="textButtonDidTouch:" destination="jA4-xG-yuk" eventType="touchUpInside" id="WcJ-xy-Lz2"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.6705882352941176" green="0.70588235294117641" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
@@ -432,6 +451,8 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideDown"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
@@ -461,6 +482,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oiY-Nx-I9b"/>
                     </view>
+                    <connections>
+                        <outlet property="promptLabel" destination="RYV-ZP-Emv" id="7Ni-Cg-24l"/>
+                        <outlet property="sourceChooseView" destination="LTb-50-Kq4" id="kw0-jG-v2e"/>
+                        <segue destination="z4p-6r-211" kind="presentation" identifier="ChooseSourceToTextOrURLInput" id="MFl-wy-fDH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="74w-LB-n8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -469,7 +495,7 @@
         <!--文本-->
         <scene sceneID="Det-So-VWC">
             <objects>
-                <viewController id="w1y-7z-gur" sceneMemberID="viewController">
+                <viewController id="w1y-7z-gur" customClass="TextOrURLInputViewController" customModule="ATSS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2bw-mw-GsF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -512,7 +538,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Er3-t7-jK4" customClass="DesignableTextView" customModule="ATSS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="64" width="343" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
@@ -535,33 +560,47 @@
                         <viewLayoutGuide key="safeArea" id="jMn-Lb-Kc8"/>
                     </view>
                     <navigationItem key="navigationItem" title="文本" id="cr0-A6-D1U">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="empty-button" id="XHW-Hw-Cb9">
-                            <color key="tintColor" red="1" green="0.1764705882352941" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="close-button" id="XHW-Hw-Cb9">
+                                <color key="tintColor" red="1" green="0.1764705882352941" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="closeButtonDidTouch:" destination="w1y-7z-gur" id="EHy-DP-Um5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="empty-button" id="iFg-1J-j49">
+                                <color key="tintColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="emptyButtonDidTouch:" destination="w1y-7z-gur" id="Bui-BL-LxN"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="summary-button" id="zli-HL-JMu">
                             <color key="tintColor" red="0.22352941176470587" green="0.792156862745098" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="YZP-ge-epU" kind="show" id="mY3-iv-uri"/>
+                                <action selector="summaryButtonDidTouch:" destination="w1y-7z-gur" id="PWZ-Yz-4Rd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="contentTextView" destination="Er3-t7-jK4" id="4PU-mt-ZDG"/>
+                        <segue destination="YZP-ge-epU" kind="show" identifier="TextOrURLInputToSummarization" id="Buo-pL-jsV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Xm-ZJ-nag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3496.8000000000002" y="266.71664167916043"/>
+            <point key="canvasLocation" x="740" y="2632"/>
         </scene>
         <!--摘要-->
         <scene sceneID="Am2-6c-9bl">
             <objects>
-                <viewController id="YZP-ge-epU" sceneMemberID="viewController">
+                <viewController id="YZP-ge-epU" customClass="SummarizationViewController" customModule="ATSS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zFb-js-aEt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="or5-Oy-cve" customClass="DesignableTextView" customModule="ATSS" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="or5-Oy-cve" customClass="DesignableTextView" customModule="ATSS" customModuleProvider="target">
                                 <rect key="frame" x="16" y="76" width="343" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
@@ -580,11 +619,22 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xyk-4p-hgV"/>
                     </view>
-                    <navigationItem key="navigationItem" title="摘要" id="QIl-ZU-0ad"/>
+                    <navigationItem key="navigationItem" title="摘要" id="QIl-ZU-0ad">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="show-origin-button" id="D7c-Ap-EbP">
+                            <color key="tintColor" red="0.25098039215686274" green="0.32941176470588235" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="showOriginArticleButtonDidTouch:" destination="YZP-ge-epU" id="3Lq-jF-yJo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="summarizationTextView" destination="or5-Oy-cve" id="r9F-ib-9C0"/>
+                        <segue destination="mLu-KG-J0u" kind="presentation" identifier="SummarizationToOriginArticle" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="qyj-gG-ptX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eun-An-0ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4320.8000000000002" y="266.71664167916043"/>
+            <point key="canvasLocation" x="1564" y="2632"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="zar-Bj-s6O">
@@ -735,7 +785,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRi-Qv-fvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672.8000000000002" y="266.71664167916043"/>
+            <point key="canvasLocation" x="-167" y="2632"/>
         </scene>
         <!--上传-->
         <scene sceneID="DF3-qh-r3a">
@@ -777,6 +827,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close-button" width="12" height="13"/>
         <image name="empty-button" width="13" height="15"/>
         <image name="hide-origin-button" width="18" height="15"/>
         <image name="home-tab" width="25" height="26"/>
@@ -794,4 +845,7 @@
         <image name="upload-tab" width="27" height="26"/>
         <image name="write-icon" width="23" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="qyj-gG-ptX"/>
+    </inferredMetricsTieBreakers>
 </document>

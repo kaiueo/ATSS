@@ -10,4 +10,7 @@ import Foundation
 
 struct StoryBoardConfigs {
     static let SummaryHistoryTableViewCellIdentifier = "SummaryHistoryTableViewCell"
+    static let ChooseSourceToTextOrURLInputSegue = "ChooseSourceToTextOrURLInput"
+    static let TextOrURLInputToSummarizationSegue = "TextOrURLInputToSummarization"
+    static let SummarizationToOriginArticleSegue = "SummarizationToOriginArticle"
 }
