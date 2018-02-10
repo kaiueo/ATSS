@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3C11C7202EE959000D1F86 /* UploadSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C11C6202EE959000D1F86 /* UploadSummaryViewController.swift */; };
 		0A3FD32F202DF2AC00888798 /* ChooseSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */; };
 		0A3FD331202DF64100888798 /* TextOrURLInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */; };
 		0A3FD333202E09C200888798 /* SummarizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD332202E09C200888798 /* SummarizationViewController.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3C11C6202EE959000D1F86 /* UploadSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSummaryViewController.swift; sourceTree = "<group>"; };
 		0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceViewController.swift; sourceTree = "<group>"; };
 		0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOrURLInputViewController.swift; sourceTree = "<group>"; };
 		0A3FD332202E09C200888798 /* SummarizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarizationViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */,
 				0A3FD332202E09C200888798 /* SummarizationViewController.swift */,
 				0A3FD334202E0D2600888798 /* OriginArticleViewController.swift */,
+				0A3C11C6202EE959000D1F86 /* UploadSummaryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 			files = (
 				0A4DD230202C4F80001A0606 /* TransitionZoom.swift in Sources */,
 				0A4DD22F202C4F80001A0606 /* TransitionManager.swift in Sources */,
+				0A3C11C7202EE959000D1F86 /* UploadSummaryViewController.swift in Sources */,
 				0A4DD23C202C4F80001A0606 /* DesignableButton.swift in Sources */,
 				0A4DD243202C4F80001A0606 /* DesignableTextView.swift in Sources */,
 				0A3FD32F202DF2AC00888798 /* ChooseSourceViewController.swift in Sources */,

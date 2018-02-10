@@ -13,4 +13,5 @@ struct StoryBoardConfigs {
     static let ChooseSourceToTextOrURLInputSegue = "ChooseSourceToTextOrURLInput"
     static let TextOrURLInputToSummarizationSegue = "TextOrURLInputToSummarization"
     static let SummarizationToOriginArticleSegue = "SummarizationToOriginArticle"
+    static let UploadSummaryToOriginArticleSegue = "UploadSummaryToOriginArticle"
 }

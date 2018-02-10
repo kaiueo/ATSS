@@ -14,12 +14,20 @@ class SummarizationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         var summarizationStrings = ""
         for summarization in summarizedArticle.summary {
-            summarizationStrings += summarization + "\n\n"
+            summarizationStrings += summarization + "\n"
         }
-        summarizationTextView.text = summarizationStrings
+        
+        let font = UIFont(name: summarizationTextView.font!.fontName, size: CGFloat(16))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = CGFloat(12)
+        
+        let attributedString = NSMutableAttributedString(string: summarizationStrings)
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: font!, range: NSRange(location: 0, length: attributedString.length))
+        
+        summarizationTextView.attributedText = attributedString
 
         // Do any additional setup after loading the view.
     }
@@ -50,3 +58,4 @@ class SummarizationViewController: UIViewController {
     
 
 }
+

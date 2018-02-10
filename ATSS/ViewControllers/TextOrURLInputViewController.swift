@@ -10,6 +10,13 @@ import UIKit
 
 class TextOrURLInputViewController: UIViewController {
 
+    
+    var count: Int! {
+        didSet{
+            countLabel.text = String(count)
+        }
+    }
+    
     var articleType: ArticleType! {
         didSet {
             switch articleType! {
@@ -20,6 +27,7 @@ class TextOrURLInputViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak var countSlider: UISlider!
     @IBAction func closeButtonDidTouch(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -28,21 +36,42 @@ class TextOrURLInputViewController: UIViewController {
     }
     
     @IBAction func summaryButtonDidTouch(_ sender: UIBarButtonItem) {
+        view.showLoading()
         let articleOrUrl = ArticleOrURL()
         articleOrUrl.type = articleType
-        articleOrUrl.count = 3
+        articleOrUrl.count = count
         articleOrUrl.content = contentTextView.text
         ATSSNetworkHelper.getSummary(from: articleOrUrl) {
             (summarizedArticle) in
-            self.performSegue(withIdentifier: StoryBoardConfigs.TextOrURLInputToSummarizationSegue, sender: summarizedArticle)
+            self.view.hideLoading()
+            if summarizedArticle != nil{
+
+                self.performSegue(withIdentifier: StoryBoardConfigs.TextOrURLInputToSummarizationSegue, sender: summarizedArticle)
+            }
+            else{
+                self.messageView.animation = "slideDown"
+                self.messageView.animate()
+            }
+            
         }
         
         
     }
     
+
+    @IBAction func confirmButtonDidTouch(_ sender: Any) {
+        messageView.animation = "fall"
+        messageView.animate()
+    }
+    @IBOutlet weak var messageView: DesignableView!
+    @IBOutlet weak var countLabel: UILabel!
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        count = Int(countSlider.value)
+        contentTextView.delegate = self
+        countSlider.addTarget(self, action: #selector(changed(slider:)), for: .valueChanged)
+        
         
 
         // Do any additional setup after loading the view.
@@ -52,6 +81,10 @@ class TextOrURLInputViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func changed(slider: UISlider) {
+         count = Int(countSlider.value)
     }
     
 
@@ -69,4 +102,18 @@ class TextOrURLInputViewController: UIViewController {
     }
     
 
+}
+
+extension TextOrURLInputViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let font = UIFont(name: textView.font!.fontName, size: CGFloat(16))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = CGFloat(12)
+        
+        let attributedString = NSMutableAttributedString(string: textView.text)
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: font!, range: NSRange(location: 0, length: attributedString.length))
+        
+        textView.attributedText = attributedString
+    }
 }

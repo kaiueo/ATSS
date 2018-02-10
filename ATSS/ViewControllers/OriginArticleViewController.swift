@@ -14,7 +14,17 @@ class OriginArticleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        originArticleTextView.text = article
+        
+        let font = UIFont(name: originArticleTextView.font!.fontName, size: CGFloat(16))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = CGFloat(12)
+        
+        let attributedString = NSMutableAttributedString(string: article)
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: font!, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.foregroundColor, value: UIColor(hex:"EFEFF4"), range: NSRange(location: 0, length: attributedString.length))
+        
+        originArticleTextView.attributedText = attributedString
 
         // Do any additional setup after loading the view.
     }
@@ -39,4 +49,18 @@ class OriginArticleViewController: UIViewController {
     }
     */
 
+}
+
+extension OriginArticleViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let font = UIFont(name: textView.font!.fontName, size: CGFloat(16))
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = CGFloat(12)
+        
+        let attributedString = NSMutableAttributedString(string: textView.text)
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedStringKey.font, value: font!, range: NSRange(location: 0, length: attributedString.length))
+        
+        textView.attributedText = attributedString
+    }
 }
