@@ -88,26 +88,26 @@ struct ATSSNetworkHelper {
     
     }
     
-    static private func getSummary(from json: JSON) -> (msg: String, summarization: SummarizedArticle?) {
+    static private func getSummary(from json: JSON) -> (code: Int, msg: String, summarization: SummarizedArticle?) {
         let summarizedArticle = SummarizedArticle()
         switch json["code"].int! {
         case ResponseCode.SUCCESS.rawValue:
             summarizedArticle.article = json["data"]["article"].string!
             summarizedArticle.summary = json["data"]["summary"].arrayObject as! [String]
-            return (ResponseCode.SUCCESS.message(), summarizedArticle)
+            return (ResponseCode.SUCCESS.rawValue, ResponseCode.SUCCESS.message(), summarizedArticle)
         case ResponseCode.FORMAT_ERROR.rawValue:
-            return (ResponseCode.FORMAT_ERROR.message(), nil)
+            return (ResponseCode.FORMAT_ERROR.rawValue, ResponseCode.FORMAT_ERROR.message(), nil)
         case ResponseCode.NO_ARTICLE.rawValue:
-            return (ResponseCode.NO_ARTICLE.message(), nil)
+            return (ResponseCode.NO_ARTICLE.rawValue, ResponseCode.NO_ARTICLE.message(), nil)
         case ResponseCode.NO_AMOUNT.rawValue:
-            return (ResponseCode.NO_AMOUNT.message(), nil)
+            return (ResponseCode.NO_AMOUNT.rawValue, ResponseCode.NO_AMOUNT.message(), nil)
         default:
-            return (ResponseCode.UNKNOEN_ERROR.message(), nil)
+            return (ResponseCode.UNKNOEN_ERROR.rawValue, ResponseCode.UNKNOEN_ERROR.message(), nil)
         }
         
     }
     
-    static func getSummary(from articleOrUrl: ArticleOrURL, complition: @escaping (SummarizedArticle?) -> Void) {
+    static func getSummary(from articleOrUrl: ArticleOrURL, complition: @escaping (SummarizedArticle?, Int) -> Void) {
         
         switch articleOrUrl.type {
         case .URL:
@@ -123,13 +123,13 @@ struct ATSSNetworkHelper {
                     let json = JSON(value)
                     let result = getSummary(from: json)
                     if let summarization = result.summarization {
-                        complition(summarization)
+                        complition(summarization, result.code)
                     }else{
-                        complition(nil)
+                        complition(nil, result.code)
                     }
                 case .failure(let error):
                     print(error)
-                    complition(nil)
+                    complition(nil, ResponseCode.UNKNOEN_ERROR.rawValue)
                 }
             }
         case .Text:
@@ -145,17 +145,17 @@ struct ATSSNetworkHelper {
                     let json = JSON(value)
                     let result = getSummary(from: json)
                     if let summarization = result.summarization {
-                        complition(summarization)
+                        complition(summarization, result.code)
                     }else {
-                        complition(nil)
+                        complition(nil, result.code)
                     }
                 case .failure(let error):
                     print(error)
-                    complition(nil)
+                    complition(nil, ResponseCode.UNKNOEN_ERROR.rawValue)
                 }
             }
         default:
-            complition(nil)
+            complition(nil, ResponseCode.UNKNOEN_ERROR.rawValue)
         }
     }
     
@@ -207,10 +207,12 @@ struct ATSSNetworkHelper {
     }
     
     static func getUser(complition: @escaping (User?) -> Void) {
+        URLCache.shared.removeAllCachedResponses()
         Alamofire.request(Router.getSelfDetail.asString()).authenticate(user: username, password: password).validate().responseJSON {
             (response) in
             switch response.result {
             case .success(let value):
+                print(value)
                 let json = JSON(value)
                 let result = getUser(from: json)
                 if let user = result.user {

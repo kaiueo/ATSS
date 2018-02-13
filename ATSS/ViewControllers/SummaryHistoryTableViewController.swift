@@ -11,15 +11,25 @@ import UIKit
 class SummaryHistoryTableViewController: UITableViewController {
 
     @IBAction func emptyButtonDIdTouch(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: UserDefaultsStrings.RecentSummary)
+        tableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "刷新")
+    }
+    
+    @objc func refreshData(){
+        tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +50,7 @@ class SummaryHistoryTableViewController: UITableViewController {
         if recent==nil {
             return 0
         }else{
-            let recentSummary = recent as! [[String: String]]
+            let recentSummary = recent as! [[String: [String:[String]]]]
             return recentSummary.count
         }
     }
@@ -48,10 +58,10 @@ class SummaryHistoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: StoryBoardConfigs.SummaryHistoryTableViewCellIdentifier)
-        var recent = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
+        let recent = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
         if recent != nil {
-            let recentSummary = recent as! [[String: String]]
-            cell.textLabel?.text = recentSummary[indexPath.row].values.first?.trimmingCharacters(in: .newlines)
+            let recentSummary = recent as! [[String: [String:[String]]]]
+            cell.textLabel?.text = recentSummary[indexPath.row].values.first?.keys.first?.trimmingCharacters(in: .newlines)
             print(cell.textLabel?.text)
             cell.detailTextLabel?.text = recentSummary[indexPath.row].keys.first
         }else {
@@ -60,6 +70,12 @@ class SummaryHistoryTableViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: StoryBoardConfigs.HistoryToSummarySegue, sender: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 
@@ -98,14 +114,26 @@ class SummaryHistoryTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == StoryBoardConfigs.HistoryToSummarySegue {
+            let toView = segue.destination as! SummarizationViewController
+            let recent = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
+            let recentSummary = recent as! [[String: [String:[String]]]]
+            let summarizedArticle = SummarizedArticle()
+            let indexPath = sender as! IndexPath
+            summarizedArticle.article = recentSummary[indexPath.row].values.first?.keys.first
+            summarizedArticle.summary = recentSummary[indexPath.row].values.first?.values.first
+            toView.summarizedArticle = summarizedArticle
+            
+        }
+        
     }
-    */
+    
 
 }

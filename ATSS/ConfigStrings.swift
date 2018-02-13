@@ -15,6 +15,7 @@ struct StoryBoardConfigs {
     static let SummarizationToOriginArticleSegue = "SummarizationToOriginArticle"
     static let UploadSummaryToOriginArticleSegue = "UploadSummaryToOriginArticle"
     static let LoginToHomeSegue = "LoginToHome"
+    static let HistoryToSummarySegue = "HistoryToSummary"
 }
 
 struct UserDefaultsStrings {

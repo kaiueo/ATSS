@@ -37,12 +37,13 @@ class SelfViewController: UIViewController {
     
     func getRemain(use: Int, uploads: Int) -> String{
         let amount = uploads / 10 + 10
-        return "用量：\(use)/\(amount)"
+        return "  用量：\(use)/\(amount)"
         
     }
     
     @IBAction func logoutButtonDidTouch(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: UserDefaultsStrings.UserInfoString)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsStrings.RecentSummary)
         self.dismiss(animated: true, completion: nil)
     }
     

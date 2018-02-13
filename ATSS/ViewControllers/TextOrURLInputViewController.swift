@@ -42,7 +42,7 @@ class TextOrURLInputViewController: UIViewController {
         articleOrUrl.count = count
         articleOrUrl.content = contentTextView.text
         ATSSNetworkHelper.getSummary(from: articleOrUrl) {
-            (summarizedArticle) in
+            (summarizedArticle, code) in
             self.view.hideLoading()
             if summarizedArticle != nil{
                 let currentDate = Date()
@@ -50,22 +50,27 @@ class TextOrURLInputViewController: UIViewController {
                 dateformatter.dateFormat = " YYYY-MM-dd HH:mm:ss"
                 let date = dateformatter.string(from: currentDate)
                 let recentSummary = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
-                if var recent = recentSummary as? [[String: String]] {
+                if var recent = recentSummary as? [[String: [String:[String]]]] {
                     if recent.count>=20 {
                         _ = recent.popLast()
                     }
-                    recent.insert([date: summarizedArticle!.article], at: 0)
+                    recent.insert([date: [summarizedArticle!.article: summarizedArticle!.summary]], at: 0)
                     print(recent)
                     UserDefaults.standard.set(recent, forKey: UserDefaultsStrings.RecentSummary)
                 }else {
-                    var recent: [[String: String]] = []
-                    recent.insert([date: summarizedArticle!.article], at: 0)
+                    var recent: [[String: [String:[String]]]] = []
+                    recent.insert([date: [summarizedArticle!.article: summarizedArticle!.summary]], at: 0)
                     print(recent)
                     UserDefaults.standard.set(recent, forKey: UserDefaultsStrings.RecentSummary)
                 }
                 self.performSegue(withIdentifier: StoryBoardConfigs.TextOrURLInputToSummarizationSegue, sender: summarizedArticle)
             }
             else{
+                if code == ResponseCode.NO_AMOUNT.rawValue {
+                    self.messageLabel.text = "今日余量已用完，请上传"
+                }else {
+                    self.messageLabel.text = "失败，请检查网络"
+                }
                 self.messageView.animation = "slideDown"
                 self.messageView.animate()
             }
@@ -75,7 +80,8 @@ class TextOrURLInputViewController: UIViewController {
         
     }
     
-
+    @IBOutlet weak var messageLabel: UILabel!
+    
     @IBAction func confirmButtonDidTouch(_ sender: Any) {
         messageView.animation = "fall"
         messageView.animate()

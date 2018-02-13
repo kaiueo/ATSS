@@ -451,6 +451,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="YZP-ge-epU" kind="show" identifier="HistoryToSummary" id="5Bt-on-eLG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbq-dl-aWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -759,6 +762,7 @@
                         <outlet property="contentTextView" destination="Er3-t7-jK4" id="4PU-mt-ZDG"/>
                         <outlet property="countLabel" destination="8qo-Vj-jah" id="SP7-tY-X1Y"/>
                         <outlet property="countSlider" destination="5TT-sc-M4Q" id="HFB-G3-KK0"/>
+                        <outlet property="messageLabel" destination="mQz-aO-xHD" id="gLn-ug-56P"/>
                         <outlet property="messageView" destination="dmH-3q-f5Y" id="0gQ-LB-jfJ"/>
                         <segue destination="YZP-ge-epU" kind="show" identifier="TextOrURLInputToSummarization" id="Buo-pL-jsV"/>
                     </connections>
@@ -1031,6 +1035,7 @@
         <image name="write-icon" width="23" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Buo-pL-jsV"/>
         <segue reference="ebQ-yK-4i8"/>
     </inferredMetricsTieBreakers>
 </document>
