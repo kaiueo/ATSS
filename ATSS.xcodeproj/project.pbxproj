@@ -54,6 +54,7 @@
 		0AB502E3202C360F00ADBA82 /* ATSSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB502E2202C360F00ADBA82 /* ATSSUITests.swift */; };
 		0AB502F8202C3BD000ADBA82 /* SummaryHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB502F7202C3BD000ADBA82 /* SummaryHistoryTableViewController.swift */; };
 		0AB502FA202C3C0F00ADBA82 /* ConfigStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB502F9202C3C0F00ADBA82 /* ConfigStrings.swift */; };
+		0AF429AE2031E82F008DB192 /* SelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF429AD2031E82F008DB192 /* SelfViewController.swift */; };
 		62D83DE30632B84660CE387B /* Pods_ATSSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E76E1BD02EEBC0D871E267BF /* Pods_ATSSTests.framework */; };
 		78B9CD4982D058C6458806A9 /* Pods_ATSS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128118BD02A34555F142C560 /* Pods_ATSS.framework */; };
 		AA34361F4CEF6AB4869B6124 /* Pods_ATSSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99DAF66948AECDCA917FDB90 /* Pods_ATSSUITests.framework */; };
@@ -131,6 +132,7 @@
 		0AB502E4202C360F00ADBA82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AB502F7202C3BD000ADBA82 /* SummaryHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHistoryTableViewController.swift; sourceTree = "<group>"; };
 		0AB502F9202C3C0F00ADBA82 /* ConfigStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStrings.swift; sourceTree = "<group>"; };
+		0AF429AD2031E82F008DB192 /* SelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfViewController.swift; sourceTree = "<group>"; };
 		128118BD02A34555F142C560 /* Pods_ATSS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ATSS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47D2B5DDD0FE9E10F3E37525 /* Pods-ATSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATSS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATSS/Pods-ATSS.debug.xcconfig"; sourceTree = "<group>"; };
 		4DB2B8284E3E41346D51D03A /* Pods-ATSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATSSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATSSTests/Pods-ATSSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				0A3FD332202E09C200888798 /* SummarizationViewController.swift */,
 				0A3FD334202E0D2600888798 /* OriginArticleViewController.swift */,
 				0A3C11C6202EE959000D1F86 /* UploadSummaryViewController.swift */,
+				0AF429AD2031E82F008DB192 /* SelfViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				0A4DD240202C4F80001A0606 /* AsyncButton.swift in Sources */,
 				0A4DD233202C4F80001A0606 /* SpringImageView.swift in Sources */,
 				0AB502FA202C3C0F00ADBA82 /* ConfigStrings.swift in Sources */,
+				0AF429AE2031E82F008DB192 /* SelfViewController.swift in Sources */,
 				0A4DD235202C4F80001A0606 /* SoundPlayer.swift in Sources */,
 				0A4DD242202C4F80001A0606 /* SpringLabel.swift in Sources */,
 				0A4DD23A202C4F80001A0606 /* Misc.swift in Sources */,

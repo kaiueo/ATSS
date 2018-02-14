@@ -16,14 +16,15 @@ enum ArticleType{
 }
 
 
-var username = "aaa"
-var password = "aaaaaaa"
+
 
 enum Router{
     static let baseURLString = "http://127.0.0.1:5000"
     case unsummarizedArticle
     case getSummary
     case uploadSummary
+    case getSelfDetail
+    case getToken
     
     func asString() -> String {
         var path: String = ""
@@ -34,6 +35,10 @@ enum Router{
             path = "/api/v1/summary/"
         case .uploadSummary:
             path = "/api/v1/article/upload"
+        case .getSelfDetail:
+            path = "/api/v1/auth/detail"
+        case .getToken:
+            path = "/api/v1/auth/token"
         }
         return Router.baseURLString + path
     }
@@ -42,6 +47,9 @@ enum Router{
 }
 
 struct ATSSNetworkHelper {
+    
+    static var username = "aaa"
+    static var password = "aaaaaaa"
     
     static private func getUnsummarizedArticle(from json: JSON) -> (msg: String, article: UnsummarizedArticle?) {
         let unsummarizedArticle = UnsummarizedArticle()
@@ -80,7 +88,7 @@ struct ATSSNetworkHelper {
     
     }
     
-    static private func getSummart(from json: JSON) -> (msg: String, summarization: SummarizedArticle?) {
+    static private func getSummary(from json: JSON) -> (msg: String, summarization: SummarizedArticle?) {
         let summarizedArticle = SummarizedArticle()
         switch json["code"].int! {
         case ResponseCode.SUCCESS.rawValue:
@@ -91,6 +99,8 @@ struct ATSSNetworkHelper {
             return (ResponseCode.FORMAT_ERROR.message(), nil)
         case ResponseCode.NO_ARTICLE.rawValue:
             return (ResponseCode.NO_ARTICLE.message(), nil)
+        case ResponseCode.NO_AMOUNT.rawValue:
+            return (ResponseCode.NO_AMOUNT.message(), nil)
         default:
             return (ResponseCode.UNKNOEN_ERROR.message(), nil)
         }
@@ -111,7 +121,7 @@ struct ATSSNetworkHelper {
                 switch response.result{
                 case .success(let value):
                     let json = JSON(value)
-                    let result = getSummart(from: json)
+                    let result = getSummary(from: json)
                     if let summarization = result.summarization {
                         complition(summarization)
                     }else{
@@ -133,7 +143,7 @@ struct ATSSNetworkHelper {
                 switch response.result{
                 case .success(let value):
                     let json = JSON(value)
-                    let result = getSummart(from: json)
+                    let result = getSummary(from: json)
                     if let summarization = result.summarization {
                         complition(summarization)
                     }else {
@@ -167,6 +177,8 @@ struct ATSSNetworkHelper {
                     complition(.FORMAT_ERROR)
                 case ResponseCode.NO_ARTICLE.rawValue:
                     complition(.NO_ARTICLE)
+                case ResponseCode.NO_AMOUNT.rawValue:
+                    complition(.NO_AMOUNT)
                 default:
                     complition(.UNKNOEN_ERROR)
                 }
@@ -177,6 +189,63 @@ struct ATSSNetworkHelper {
         }
     }
     
+    static private func getUser(from json: JSON) -> (msg: String, user: User?) {
+        let user = User()
+        switch json["code"].int! {
+        case ResponseCode.SUCCESS.rawValue:
+            user.username = json["data"]["username"].string!
+            user.avatar = Router.baseURLString + json["data"]["avatar"].string!
+            user.created_at = json["data"]["created_at"].string!
+            user.uploads = json["data"]["uploads"].int!
+            user.use = json["data"]["use"].int!
+            user.biography = json["data"]["biography"].string!
+            return (ResponseCode.SUCCESS.message(), user)
+        default:
+            return (ResponseCode.UNKNOEN_ERROR.message(), nil)
+        }
+        
+    }
+    
+    static func getUser(complition: @escaping (User?) -> Void) {
+        Alamofire.request(Router.getSelfDetail.asString()).authenticate(user: username, password: password).validate().responseJSON {
+            (response) in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let result = getUser(from: json)
+                if let user = result.user {
+                    complition(user)
+                }else {
+                    complition(nil)
+                }
+            case .failure(let error):
+                print(error)
+                complition(nil)
+            }
+        }
+    }
+    
+    static func getToken(username: String, password: String, complition: @escaping (_: String, _: String, _: Int?) -> Void) {
+        Alamofire.request(Router.getToken.asString()).authenticate(user: username, password: password).response {
+            (response) in
+            let code = response.response?.statusCode
+            complition(username, password, code)
+        }
+    }
+    
+    static func getImage(from url: String, complition: @escaping (UIImage?) -> Void) {
+        Alamofire.request(url).responseData {
+            (response) in
+            switch response.result {
+            case .success(let value):
+                let image = UIImage(data: value)
+                complition(image)
+            case .failure(let error):
+                print(error)
+                complition(nil)
+            }
+        }
+    }
     
 }
 

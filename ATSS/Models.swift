@@ -13,6 +13,7 @@ enum ResponseCode: Int {
     case FORMAT_ERROR = 1
     case UNKNOEN_ERROR = 2
     case NO_ARTICLE = 3
+    case NO_AMOUNT = 4
     
     func message() -> String{
         switch self {
@@ -24,6 +25,8 @@ enum ResponseCode: Int {
             return "unknown error"
         case .NO_ARTICLE:
             return "no unsummarized article"
+        case .NO_AMOUNT:
+            return "upload to increase your use amount"
         }
     }
 }
@@ -55,6 +58,15 @@ class ArticleOrURL {
     var type: ArticleType!
     var count: Int!
     var content: String!
+}
+
+class User {
+    var username: String!
+    var avatar: String!
+    var uploads: Int!
+    var use: Int!
+    var created_at: String!
+    var biography: String!
 }
 
 

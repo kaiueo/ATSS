@@ -10,6 +10,8 @@ import UIKit
 
 class SummaryHistoryTableViewController: UITableViewController {
 
+    @IBAction func emptyButtonDIdTouch(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,15 +36,28 @@ class SummaryHistoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        let recent = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
+        if recent==nil {
+            return 0
+        }else{
+            let recentSummary = recent as! [[String: String]]
+            return recentSummary.count
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StoryBoardConfigs.SummaryHistoryTableViewCellIdentifier, for: indexPath)
-
-        
-        // Configure the cell...
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: StoryBoardConfigs.SummaryHistoryTableViewCellIdentifier)
+        var recent = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
+        if recent != nil {
+            let recentSummary = recent as! [[String: String]]
+            cell.textLabel?.text = recentSummary[indexPath.row].values.first?.trimmingCharacters(in: .newlines)
+            print(cell.textLabel?.text)
+            cell.detailTextLabel?.text = recentSummary[indexPath.row].keys.first
+        }else {
+            cell.textLabel?.text = ""
+            cell.detailTextLabel?.text = ""
+        }
 
         return cell
     }

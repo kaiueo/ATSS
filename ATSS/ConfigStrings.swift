@@ -14,4 +14,10 @@ struct StoryBoardConfigs {
     static let TextOrURLInputToSummarizationSegue = "TextOrURLInputToSummarization"
     static let SummarizationToOriginArticleSegue = "SummarizationToOriginArticle"
     static let UploadSummaryToOriginArticleSegue = "UploadSummaryToOriginArticle"
+    static let LoginToHomeSegue = "LoginToHome"
+}
+
+struct UserDefaultsStrings {
+    static let UserInfoString = "user-info"
+    static let RecentSummary = "recent-summary"
 }

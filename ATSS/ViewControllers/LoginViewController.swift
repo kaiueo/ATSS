@@ -10,42 +10,66 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginView: DesignableView!
+    @IBOutlet weak var promptLabel: DesignableLabel!
+    @IBOutlet weak var passwordLabel: DesignableTextField!
+    @IBOutlet weak var usernameLabel: DesignableTextField!
     @IBAction func loginButtonDidTouch(_ sender: DesignableButton) {
-        ATSSNetworkHelper.getUnsummarizedArticle{
-            (aritcle) in
-            print(aritcle?.id)
-            print(aritcle?.text)
-        }
-//        let article = ArticleOrURL()
-//        article.type = ArticleType.URL
-//        article.count = 3
-//        article.content = "https://www.ithome.com/html/it/347076.htm"
-//        ATSSNetworkHelper.getSummary(from: article){
-//            (summarizedArticle) in
-//            print(summarizedArticle!.article)
-//            print(summarizedArticle!.summary)
-//        }
-        
-        let summary = SummarizationForUpload()
-        summary.id = "NDk=\n"
-        summary.summarization = "ashdaksjdhkasjdaksdha"
-        summary.text = "IT之家 2月9日消息 今天 微软官方宣布了Build开发者大会 ，表示将于5月7日至9日在西雅图举办，目前官网已经接受开发者的注册。不过对于部分开发者尤其是多平台的开发者来说似乎有个不好的消息，那就是今年的微软Build大会确定将和谷歌I/O大会撞车。\n\nGoogleI/O大会的举办时间为5月8日至10日，地点位于加利福尼亚的山景城，很显然开发者不能同时参加两个科技巨头的盛会，于是参加微软Build 2018大会还是谷歌I/O大会成为了开发者一个艰难的选择。同一时间段两大科技公司的展会撞车也算是比较罕见的情况。\n\n当然无论微软Build 2018大会是否和谷歌I/O大会撞车， IT之家 还是会及时地播报这两场大会的最新消息以及相关的资讯。如果你是开发者的话，你会参加哪一场的发布会呢？\n\n\n\n"
-        ATSSNetworkHelper.upload(summarization: summary){
-            (responsecode) in
-            print(responsecode.message())
-            print(responsecode.rawValue)
+        let username = usernameLabel.text!
+        let password = passwordLabel.text!
+        if username=="" || password=="" {
+            self.errorHandle(errorMessage: "请输入用户名或密码")
+            
+        }else {
+            promptLabel.isHidden = true
+            ATSSNetworkHelper.getToken(username: username, password: password) {
+                (username, password, code) in
+                if code == nil {
+                    self.errorHandle(errorMessage: "请检查网络连接")
+                    
+                }else if code==200 {
+                    let userInfo: [String: Any] = ["username": username,
+                                                   "password": password]
+                    UserDefaults.standard.set(userInfo, forKey: UserDefaultsStrings.UserInfoString)
+                    ATSSNetworkHelper.username = username
+                    ATSSNetworkHelper.password = password
+                    self.performSegue(withIdentifier: StoryBoardConfigs.LoginToHomeSegue, sender: nil)
+                    
+                }else {
+                    self.errorHandle(errorMessage: "用户名或密码错误")
+                    
+                }
+            }
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let userInfo = UserDefaults.standard.object(forKey: UserDefaultsStrings.UserInfoString)
+        if userInfo != nil {
+            let user = userInfo as! [String: Any]
+            ATSSNetworkHelper.username = user["username"] as! String
+            ATSSNetworkHelper.password = user["password"] as! String
+            self.performSegue(withIdentifier: StoryBoardConfigs.LoginToHomeSegue, sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func errorHandle(errorMessage: String){
+        promptLabel.text = errorMessage
+        promptLabel.isHidden = false
+        loginView.animation = "shake"
+        loginView.animate()
     }
     
 

@@ -45,7 +45,24 @@ class TextOrURLInputViewController: UIViewController {
             (summarizedArticle) in
             self.view.hideLoading()
             if summarizedArticle != nil{
-
+                let currentDate = Date()
+                let dateformatter = DateFormatter()
+                dateformatter.dateFormat = " YYYY-MM-dd HH:mm:ss"
+                let date = dateformatter.string(from: currentDate)
+                let recentSummary = UserDefaults.standard.object(forKey: UserDefaultsStrings.RecentSummary)
+                if var recent = recentSummary as? [[String: String]] {
+                    if recent.count>=20 {
+                        _ = recent.popLast()
+                    }
+                    recent.insert([date: summarizedArticle!.article], at: 0)
+                    print(recent)
+                    UserDefaults.standard.set(recent, forKey: UserDefaultsStrings.RecentSummary)
+                }else {
+                    var recent: [[String: String]] = []
+                    recent.insert([date: summarizedArticle!.article], at: 0)
+                    print(recent)
+                    UserDefaults.standard.set(recent, forKey: UserDefaultsStrings.RecentSummary)
+                }
                 self.performSegue(withIdentifier: StoryBoardConfigs.TextOrURLInputToSummarizationSegue, sender: summarizedArticle)
             }
             else{

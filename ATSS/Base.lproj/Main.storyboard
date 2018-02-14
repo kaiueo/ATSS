@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2xW-Iv-LNO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b0O-0Y-OnC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,7 +19,7 @@
         <!--个人-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ATSS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SelfViewController" customModule="ATSS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,10 +119,28 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="个人" id="hUE-x3-uiR">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="self-logout" id="pT4-th-G4J">
-                            <color key="tintColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="self-logout" id="pT4-th-G4J">
+                                <color key="tintColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="logoutButtonDidTouch:" destination="BYZ-38-t0r" id="rap-MO-4Ub"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="fresh-button" id="U1N-jr-c3P">
+                                <color key="tintColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="freshButtonDidTouch:" destination="BYZ-38-t0r" id="OfF-6N-CsZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="avatarImageView" destination="SCj-hw-EMu" id="xps-iN-DVB"/>
+                        <outlet property="biographyLabel" destination="bFe-Ik-XHL" id="WRx-UX-dyh"/>
+                        <outlet property="createLabel" destination="Ep1-l9-xP7" id="OAO-Du-NWc"/>
+                        <outlet property="usageLabel" destination="u10-To-COa" id="yBW-ls-RBb"/>
+                        <outlet property="usernamaLabel" destination="28w-Ga-cct" id="olq-XI-qxs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,12 +436,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="摘要" id="C4L-Ok-AvP">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="write-icon" id="rQy-6e-7zU">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="jA4-xG-yuk" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="PZu-VZ-Tk1"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="write-icon" id="rQy-6e-7zU">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="jA4-xG-yuk" kind="presentation" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="PZu-VZ-Tk1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="empty-button" id="mLU-Bs-W95">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="emptyButtonDIdTouch:" destination="9xI-uw-XfA" id="KmQ-Rm-Kca"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbq-dl-aWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -810,7 +836,7 @@
                                                         <constraint firstAttribute="height" constant="15" id="K8X-Et-op4"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入用户名或密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udg-X9-BZs" customClass="DesignableLabel" customModule="ATSS" customModuleProvider="target">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入用户名或密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udg-X9-BZs" customClass="DesignableLabel" customModule="ATSS" customModuleProvider="target">
                                                     <rect key="frame" x="26" y="50" width="238" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="HrG-9r-5IV"/>
@@ -915,10 +941,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jc3-Gu-l0s"/>
                     </view>
+                    <connections>
+                        <outlet property="loginView" destination="I9L-BV-uKx" id="w10-8u-4wu"/>
+                        <outlet property="passwordLabel" destination="gYU-gD-7qp" id="JQ1-St-L0E"/>
+                        <outlet property="promptLabel" destination="udg-X9-BZs" id="1Ph-hd-pPA"/>
+                        <outlet property="usernameLabel" destination="sPK-PQ-215" id="5zf-As-mmO"/>
+                        <segue destination="2xW-Iv-LNO" kind="presentation" identifier="LoginToHome" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="4pB-cB-7Ai"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d0w-yI-EBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-249" y="-738"/>
+            <point key="canvasLocation" x="-564" y="-798"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="utO-rj-eUf">
