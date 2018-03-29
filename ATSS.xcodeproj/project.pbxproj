@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A345F20206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A345F1A206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		0A345F21206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A345F1B206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.m */; };
+		0A345F22206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A345F1C206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.m */; };
+		0A345F23206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A345F1E206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.m */; };
 		0A3C11C7202EE959000D1F86 /* UploadSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3C11C6202EE959000D1F86 /* UploadSummaryViewController.swift */; };
 		0A3FD32F202DF2AC00888798 /* ChooseSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */; };
 		0A3FD331202DF64100888798 /* TextOrURLInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */; };
@@ -78,6 +82,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A345F18206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		0A345F19206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		0A345F1A206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		0A345F1B206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		0A345F1C206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		0A345F1D206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		0A345F1E206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		0A345F1F206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
 		0A3C11C6202EE959000D1F86 /* UploadSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSummaryViewController.swift; sourceTree = "<group>"; };
 		0A3FD32E202DF2AC00888798 /* ChooseSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSourceViewController.swift; sourceTree = "<group>"; };
 		0A3FD330202DF64100888798 /* TextOrURLInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOrURLInputViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +184,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A345F17206CFB4700BA93B0 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				0A345F18206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.h */,
+				0A345F19206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.h */,
+				0A345F1A206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+				0A345F1B206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.m */,
+				0A345F1C206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.m */,
+				0A345F1D206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				0A345F1E206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.m */,
+				0A345F1F206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.h */,
+			);
+			path = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 		0A4DD20E202C4F80001A0606 /* Spring */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +261,7 @@
 		0AB502BE202C360E00ADBA82 /* ATSS */ = {
 			isa = PBXGroup;
 			children = (
+				0A345F17206CFB4700BA93B0 /* TPKeyboardAvoiding */,
 				0A4DD20E202C4F80001A0606 /* Spring */,
 				0AB502F6202C3BA400ADBA82 /* ViewControllers */,
 				0AB502BF202C360E00ADBA82 /* AppDelegate.swift */,
@@ -608,10 +636,12 @@
 				0A3C11C7202EE959000D1F86 /* UploadSummaryViewController.swift in Sources */,
 				0A4DD23C202C4F80001A0606 /* DesignableButton.swift in Sources */,
 				0A4DD243202C4F80001A0606 /* DesignableTextView.swift in Sources */,
+				0A345F22206CFB4700BA93B0 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				0A3FD32F202DF2AC00888798 /* ChooseSourceViewController.swift in Sources */,
 				0A4DD236202C4F80001A0606 /* BlurView.swift in Sources */,
 				0A4DD231202C4F80001A0606 /* ImageLoader.swift in Sources */,
 				0A4DD246202C4F80001A0606 /* UnwindSegue.swift in Sources */,
+				0A345F23206CFB4700BA93B0 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				0AB502C2202C360E00ADBA82 /* ViewController.swift in Sources */,
 				0A4DD23B202C4F80001A0606 /* SpringView.swift in Sources */,
 				0A4DD234202C4F80001A0606 /* DesignableLabel.swift in Sources */,
@@ -634,6 +664,8 @@
 				0A4DD237202C4F80001A0606 /* DesignableTextField.swift in Sources */,
 				0A4DD239202C4F80001A0606 /* SpringTextView.swift in Sources */,
 				0A4DD232202C4F80001A0606 /* Spring.swift in Sources */,
+				0A345F21206CFB4700BA93B0 /* TPKeyboardAvoidingTableView.m in Sources */,
+				0A345F20206CFB4700BA93B0 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				0AA7A10C202D7E2600E05D18 /* NetworksHelper.swift in Sources */,
 				0A4DD238202C4F80001A0606 /* SpringButton.swift in Sources */,
 				0A4DD22E202C4F80001A0606 /* KeyboardLayoutConstraint.swift in Sources */,

@@ -48,8 +48,8 @@ enum Router{
 
 struct ATSSNetworkHelper {
     
-    static var username = "aaa"
-    static var password = "aaaaaaa"
+    static var username = ""
+    static var password = ""
     
     static private func getUnsummarizedArticle(from json: JSON) -> (msg: String, article: UnsummarizedArticle?) {
         let unsummarizedArticle = UnsummarizedArticle()

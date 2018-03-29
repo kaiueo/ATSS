@@ -33,6 +33,8 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(userInfo, forKey: UserDefaultsStrings.UserInfoString)
                     ATSSNetworkHelper.username = username
                     ATSSNetworkHelper.password = password
+                    self.usernameLabel.text = ""
+                    self.passwordLabel.text = ""
                     self.performSegue(withIdentifier: StoryBoardConfigs.LoginToHomeSegue, sender: nil)
                     
                 }else {
